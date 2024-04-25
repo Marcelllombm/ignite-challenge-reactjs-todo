@@ -1,1 +1,1 @@
-# ignite-challenge-reactjs-todo
+# Ignite Challenge react todo
