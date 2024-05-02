@@ -1,0 +1,27 @@
+header{
+    text-align: center;
+    min-height: 200px;
+    width: 100%;
+    background:var(--gray-700);
+}
+header div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 72px;
+}
+
+header div h1  {
+    font-weight:700;
+    color: var(--purple-dark);
+    }
+header div h1 span {
+    color:var(--blue);
+}
+
+header div img{
+    max-height: 36px;
+    padding-top:8px;
+    padding-right: 10px;
+}
