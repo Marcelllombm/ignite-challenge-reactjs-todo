@@ -2,4 +2,93 @@
     height: 100vh;
     width: 100%;
     background: var(--gray-600);
+    position: relative;
+}
+.headerCreate{
+    position:absolute;
+    transform: translate(-50%, -50%); 
+    top: -6px;
+    left: 50%;
+    width: 736px;
+}
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.inputCreate{
+    background: var(--gray-500);
+    color:var(--gray-300);
+    border: 1px solid var(--gray-700);
+    padding: 16px;
+    border-radius: 8px;
+    min-height: 54px;
+    width: 85%;
+}
+.inputCreate:focus {
+    border: 1px solid var(--purple-dark);
+    outline: none;
+}
+
+.btCreate{
+    background: var(--blue-dark);
+    color: var(--gray-100);
+    font-weight: bold;
+    font-size: 0.875rem;
+    padding: 16px;
+    border-radius: 8px;
+    border:0;
+    min-height: 52px;
+    margin-left: 8px;
+    width: 15%;
+}
+
+.btCreate:hover{
+    cursor: pointer;
+    background: var(--blue);
+}
+
+.btCreate span{
+    padding-left: 8px;
+}
+.sectionMain{
+    height: 95vh;
+    margin: 0 auto;
+    width: 736px;
+}
+
+.task{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: var(--gray-300);
+    padding-top: 74px;
+}
+
+.task h1{
+    font-size: 0.875rem;
+    color: var(--blue);
+    font-weight: bold;
+}
+
+.task p{
+    font-size: 0.875rem;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.task span{
+    padding: 7px 8px;
+    background: var(--gray-400);
+    color: var(--gray-200);
+    border-radius: 10px;
+    
+}
+
+.footer{
+    margin: 10px auto;
+    width: 60%;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--gray-300);
 }
