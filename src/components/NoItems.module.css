@@ -1,0 +1,20 @@
+.noitems{
+        text-align: center;
+    }
+
+.noitems img{
+    min-width: 56px;
+    min-height: 56px;
+    padding-top: 88px;
+    border: 0;
+}
+.noitems p {
+   color: var(--gray-300);
+   font-weight: bold;
+   font-size: 1rem;
+}
+
+.noitems span{
+    color: var(--gray-300);
+   font-size: 1rem;
+}

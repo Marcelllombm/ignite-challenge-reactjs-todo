@@ -1,4 +1,5 @@
-import style from  "./Task.module.css"
+import { NoItems } from "./NoItems";
+import style from  "./Task.module.css";
 import { FaPlusCircle } from "react-icons/fa";
 
 export function Task(){
@@ -15,6 +16,7 @@ export function Task(){
                 <h1>Tarefas Criadas <span>0</span></h1>
                 <p>Concluídas <span>0 de 05</span></p>
             </div>
+            <NoItems/>
         </section>
         <footer className={style.footer}>
             <p>© 2024 Todos os direitos reservados. Desenvolvido por Marcelo Borges (Ignite Challenge).</p>
