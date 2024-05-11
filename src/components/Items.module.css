@@ -1,0 +1,22 @@
+.mainitems{
+    margin-top: 20px;
+    padding: 20px;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--gray-500);
+    color: var(--gray-100);
+    font-size: 0.875rem;
+}
+
+
+.mainitems button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+}
+
