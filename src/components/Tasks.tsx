@@ -18,12 +18,17 @@ export function Tasks(){
     const [value, setValue] = useState("");
     const [itemArray, setItemArray] = useState([]);
 
- console.log(itemArray)
 
     const handleChange = (event: Ivalue)=> {
         const valuetext = event.target.value;
         setValue(valuetext);
       };
+
+    const handleClickRemoveId =(id)=>{
+        setItemArray(prevArray => prevArray.filter(item => item.id !== id));
+        setTask(prevTask => prevTask - 1);
+    }
+    
     
     const handleClick = (event: MouseEvent) =>{
         event.preventDefault();
@@ -56,7 +61,7 @@ export function Tasks(){
                 <p>Concluídas <span>0 de {task}</span></p>
             </div>
             {task > 0 ? itemArray.map(item =>(
-                <Items key={item.id} itemArray={item} />
+                <Items key={item.id} itemArray={item} handleClickRemoveId={handleClickRemoveId} />
             ))  : <NoItems/> }
             
         </section>
