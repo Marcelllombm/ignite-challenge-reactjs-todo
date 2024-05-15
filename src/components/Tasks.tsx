@@ -52,8 +52,8 @@ export function Tasks(){
         </header>
         <section className={style.sectionMain}>
             <div className={style.task}>
-                <h1>Tarefas Criadas <span>0</span></h1>
-                <p>Concluídas <span>0 de 05</span></p>
+                <h1>Tarefas Criadas <span>{task}</span></h1>
+                <p>Concluídas <span>0 de {task}</span></p>
             </div>
             {task > 0 ? itemArray.map(item =>(
                 <Items key={item.id} itemArray={item} />
