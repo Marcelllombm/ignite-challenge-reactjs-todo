@@ -55,7 +55,9 @@ export function Tasks(){
                 <h1>Tarefas Criadas <span>0</span></h1>
                 <p>Concluídas <span>0 de 05</span></p>
             </div>
-            {task > 0 ? <Items itemArray={itemArray} /> : <NoItems/> }
+            {task > 0 ? itemArray.map(item =>(
+                <Items key={item.id} itemArray={item} />
+            ))  : <NoItems/> }
             
         </section>
         <footer className={style.footer}>
