@@ -29,7 +29,10 @@ export function Tasks(){
         setTask(prevTask => prevTask - 1);
     }
     
-    
+    const handleClickCompleteId = (id) => {
+        setItemArray(prevArray => prevArray.map(item => item.id === id ? {...item, isComplete: !item.isComplete} : item));
+    }
+
     const handleClick = (event: MouseEvent) =>{
         event.preventDefault();
 
@@ -38,7 +41,8 @@ export function Tasks(){
             title: value,
             isComplete: false
         }
-         
+    
+    
         setItemArray(prevArray => [...prevArray, newItem]);
         setTask(prevTask => prevTask + 1);
         setValue("");
@@ -61,7 +65,12 @@ export function Tasks(){
                 <p>Concluídas <span>0 de {task}</span></p>
             </div>
             {task > 0 ? itemArray.map(item =>(
-                <Items key={item.id} itemArray={item} handleClickRemoveId={handleClickRemoveId} />
+                <Items 
+                key={item.id} 
+                itemArray={item} 
+                handleClickRemoveId={handleClickRemoveId}
+                handleClickCompleteId={handleClickCompleteId}
+                />
             ))  : <NoItems/> }
             
         </section>
