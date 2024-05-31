@@ -17,20 +17,47 @@ export function Tasks(){
     const [task, setTask] =useState(0);
     const [value, setValue] = useState("");
     const [itemArray, setItemArray] = useState([]);
-
-
+    const [completedTasks, setCompletedTasks] = useState(0);
+    
     const handleChange = (event: Ivalue)=> {
         const valuetext = event.target.value;
         setValue(valuetext);
       };
 
     const handleClickRemoveId =(id)=>{
+         // Encontre o item que será removido do checkbox
+        const itemToRemove = itemArray.find(item => item.id === id);
+
         setItemArray(prevArray => prevArray.filter(item => item.id !== id));
         setTask(prevTask => prevTask - 1);
+     
+
+        if (itemToRemove && itemToRemove.isComplete === true) {
+            setCompletedTasks(prevCompletedTasks => prevCompletedTasks - 1);
+        }
+
+        
     }
     
-    const handleClickCompleteId = (id) => {
-        setItemArray(prevArray => prevArray.map(item => item.id === id ? {...item, isComplete: !item.isComplete} : item));
+    const handleClickCompleteId = (id, event) => {
+        const isComplete = event.target.checked;
+    
+        // Atualiza o número de tarefas concluídas antes de atualizar o array
+        if (isComplete) {
+            setCompletedTasks(prevCompletedTasks => prevCompletedTasks + 1);
+        } else {
+            setCompletedTasks(prevCompletedTasks => prevCompletedTasks - 1);
+        }
+    
+        // Atualiza o array de itens sem remover nenhum item
+        setItemArray(prevArray => prevArray.map(item => {
+            if (item.id === id) {
+                return {...item, isComplete: isComplete};
+            } else {
+                return item; // Mantém os itens inalterados se não corresponderem ao id
+            }
+            
+        }));
     }
 
     const handleClick = (event: MouseEvent) =>{
@@ -50,7 +77,7 @@ export function Tasks(){
        
     }
 
-    console.log(itemArray)
+  
     return (
     <main className={style.main}>
         <header className={style.headerCreate}>
@@ -62,7 +89,7 @@ export function Tasks(){
         <section className={style.sectionMain}>
             <div className={style.task}>
                 <h1>Tarefas Criadas <span>{task}</span></h1>
-                <p>Concluídas <span>0 de {task}</span></p>
+                <p>Concluídas <span>{completedTasks} de {task}</span></p>
             </div>
             {task > 0 ? itemArray.map(item =>(
                 <Items 

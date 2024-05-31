@@ -2,14 +2,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import style from "./Items.module.css";
 
 export function Items(props){
-    console.log(props)
+
     return (
         <div className={style.mainitems}>
-            <input type="checkbox" 
-            id={props.itemArray.id} 
-            name={props.itemArray.title}
-            onClick={()=> props.handleClickCompleteId(props.itemArray.id)}
-            />
+           <input type="checkbox" id={props.itemArray.id} name={props.itemArray.title} onChange={(event)=> props.handleClickCompleteId(props.itemArray.id, event)}/>
             <label htmlFor={props.itemArray.id}
             className={props.itemArray.isComplete ? style.completed : ''}
             >{props.itemArray.title}</label>
