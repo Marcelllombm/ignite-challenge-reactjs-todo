@@ -10,36 +10,37 @@ interface Ivalue {
         value:string;
     }
 }
-
-
+interface Item {
+    id: string;
+    title: string;
+    isComplete: boolean;
+  }
 
 export function Tasks(){
-    const [task, setTask] =useState(0);
-    const [value, setValue] = useState("");
-    const [itemArray, setItemArray] = useState([]);
+    const [numberOfTalksCreated, setNumberOfTalksCreated] =useState(0);
+    const [valueInput, setValueInput] = useState("");
+    const [itemArray, setItemArray] = useState<Item[]>([]);
     const [completedTasks, setCompletedTasks] = useState(0);
+
+    const isTasksGreaterThanZero = numberOfTalksCreated > 0 ;
     
-    const handleChange = (event: Ivalue)=> {
+    const handleChangeInput = (event: Ivalue)=> {
         const valuetext = event.target.value;
-        setValue(valuetext);
+        setValueInput(valuetext);
       };
 
-    const handleClickRemoveId =(id)=>{
-         // Encontre o item que será removido do checkbox
-        const itemToRemove = itemArray.find(item => item.id === id);
+    const handleClickRemoveId =(id: string)=>{
+        const findItemRemovedFromTheCheckbox = itemArray.find(item => item.id === id);
 
         setItemArray(prevArray => prevArray.filter(item => item.id !== id));
-        setTask(prevTask => prevTask - 1);
-     
-
-        if (itemToRemove && itemToRemove.isComplete === true) {
+        setNumberOfTalksCreated(prevTask => prevTask - 1);
+    
+        if (findItemRemovedFromTheCheckbox && findItemRemovedFromTheCheckbox.isComplete === true) {
             setCompletedTasks(prevCompletedTasks => prevCompletedTasks - 1);
         }
-
-        
     }
     
-    const handleClickCompleteId = (id, event) => {
+    const handleClickCompleteId = (id: string, event: React.ChangeEvent<HTMLInputElement>) => {
         const isComplete = event.target.checked;
     
         // Atualiza o número de tarefas concluídas antes de atualizar o array
@@ -60,38 +61,34 @@ export function Tasks(){
         }));
     }
 
-    const handleClick = (event: MouseEvent) =>{
+    const handleClickTaskCreation = (event: React.FormEvent<HTMLFormElement>): void =>{
         event.preventDefault();
 
         const newItem = {
             id: uuidv4(),
-            title: value,
+            title: valueInput,
             isComplete: false
         }
-    
-    
         setItemArray(prevArray => [...prevArray, newItem]);
-        setTask(prevTask => prevTask + 1);
-        setValue("");
-
-       
+        setNumberOfTalksCreated(prevTask => prevTask + 1);
+        setValueInput("");
     }
 
-  
+
     return (
     <main className={style.main}>
         <header className={style.headerCreate}>
-            <form onSubmit={handleClick} className={style.form}>
-                <input type="text" className={style.inputCreate}  value={value}  onChange={handleChange} placeholder="Adicione uma nova tarefa"/>
+            <form onSubmit={handleClickTaskCreation} className={style.form}>
+                <input type="text" className={style.inputCreate}  value={valueInput}  onChange={handleChangeInput} placeholder="Adicione uma nova tarefa"/>
                 <button className={style.btCreate} type="submit">Criar <span> <FaPlusCircle /> </span></button>
             </form>
         </header>
         <section className={style.sectionMain}>
             <div className={style.task}>
-                <h1>Tarefas Criadas <span>{task}</span></h1>
-                <p>Concluídas <span>{completedTasks} de {task}</span></p>
+                <h1>Tarefas Criadas <span>{numberOfTalksCreated}</span></h1>
+                <p>Concluídas <span>{completedTasks} de {numberOfTalksCreated}</span></p>
             </div>
-            {task > 0 ? itemArray.map(item =>(
+            {isTasksGreaterThanZero ? itemArray.map(item =>(
                 <Items 
                 key={item.id} 
                 itemArray={item} 
